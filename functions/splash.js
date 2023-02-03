@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 const querystring = require("querystring");
 const stringify = require("../utils/stringify.js");
 
-const GOOGLEAPIS_ORIGIN = "https://www.googleapis.com";
+const SPLASH_ORIGIN = "https://api.unsplash.com";
 const headers = {
   "Access-Control-Allow-Origin": process.env.HOST,
   "Content-Type": "application/json; charset=utf-8",
@@ -15,10 +15,10 @@ exports.handler = async (event) => {
     headers: { referer },
   } = event;
 
-  const url = new URL(path, GOOGLEAPIS_ORIGIN);
+  const url = new URL(path, SPLASH_ORIGIN);
   const parameters = querystring.stringify({
     ...queryStringParameters,
-    key: process.env.API_KEY,
+    client_id: process.env.API_KEY,
   });
 
   url.search = parameters;
@@ -43,6 +43,7 @@ exports.handler = async (event) => {
       body: stringify(body),
     };
   } catch (error) {
+
     return {
       statusCode: 400,
       ok: false,

@@ -8,7 +8,7 @@ status = 200
 force = true
 
 [[redirects]]
-from = "/youtube/v3/*"
-to = "/.netlify/functions/youtube/:splat"
+from = "/photos/random/*"
+to = "/.netlify/functions/splash/:splat"
 status = 200
 force = true
